@@ -41,6 +41,5 @@ public class Individual extends Customer implements EntityClass {
         String SQL = "INSERT INTO individuals(email, billing_cycle, first_name, last_n.ame, pesel) VALUES (\"" + getEmail() + "\", " +
                 getBillingCycle().toInt() + ", \"" + firstName + "\", \"" + lastName + "\", \"" + pesel + "\");";
         DatabaseConnector.execute(SQL);
-        System.out.println(SQL);
     }
 }
