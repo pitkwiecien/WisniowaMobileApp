@@ -87,29 +87,50 @@ public class DatabaseConnector {
 
     public static boolean execute(String SQL) {
         DatabaseConnector dbc = new DatabaseConnector();
-        boolean ret = dbc.executeQuery(SQL);
+        boolean ret = dbc.executeSQL(SQL);
         dbc.closeConnection();
         return ret;
     }
 
     public static void createTable(TableIdentifiers... tableIdentifier){
+        DatabaseConnector dbc = new DatabaseConnector();
         for(TableIdentifiers identifier : tableIdentifier) {
             switch (identifier) {
-                case ADDRESSES -> execute(Constants.CREATEDB_ADDRESSES);
-                case CUSTOMER_ADDRESSES -> execute(Constants.CREATEDB_CUSTOMER_ADDRESSES);
-                case COMPANIES -> execute(Constants.CREATEDB_COMPANIES);
-                case INDIVIDUALS -> execute(Constants.CREATEDB_INDIVIDUALS);
-                case ACCOUNTS -> execute(Constants.CREATEDB_ACCOUNTS);
-                case POST_PAID_CONTRACTS -> execute(Constants.CREATEDB_POST_PAID_CONTRACTS);
-                case PRE_PAID_CONTRACTS -> execute(Constants.CREATEDB_PRE_PAID_CONTRACTS);
-                case POST_PAID_TARIFFS -> execute(Constants.CREATEDB_POST_PAID_TARIFFS);
-                case PRE_PAID_TARIFFS -> execute(Constants.CREATEDB_PRE_PAID_TARIFFS);
+                case ADDRESSES -> dbc.executeSQL(Constants.CREATEDB_ADDRESSES);
+                case CUSTOMER_ADDRESSES -> dbc.executeSQL(Constants.CREATEDB_CUSTOMER_ADDRESSES);
+                case COMPANIES -> dbc.executeSQL(Constants.CREATEDB_COMPANIES);
+                case INDIVIDUALS -> dbc.executeSQL(Constants.CREATEDB_INDIVIDUALS);
+                case ACCOUNTS -> dbc.executeSQL(Constants.CREATEDB_ACCOUNTS);
+                case POST_PAID_CONTRACTS -> dbc.executeSQL(Constants.CREATEDB_POST_PAID_CONTRACTS);
+                case PRE_PAID_CONTRACTS -> dbc.executeSQL(Constants.CREATEDB_PRE_PAID_CONTRACTS);
+                case POST_PAID_TARIFFS -> dbc.executeSQL(Constants.CREATEDB_POST_PAID_TARIFFS);
+                case PRE_PAID_TARIFFS -> dbc.executeSQL(Constants.CREATEDB_PRE_PAID_TARIFFS);
             }
         }
+        dbc.closeConnection();
+    }
+
+    public static void dropTable(TableIdentifiers... tableIdentifier){
+        DatabaseConnector dbc = new DatabaseConnector();
+        for(TableIdentifiers identifier : tableIdentifier) {
+            String SQL = "DROP TABLE IF EXISTS " + identifier.toString().toLowerCase();
+            dbc.executeSQL(SQL);
+        }
+        dbc.closeConnection();
     }
 
     public static void initiateTables(){
-        createTable(ADDRESSES, CUSTOMER_ADDRESSES, COMPANIES, INDIVIDUALS, ACCOUNTS, POST_PAID_CONTRACTS, PRE_PAID_CONTRACTS,
-                POST_PAID_TARIFFS, PRE_PAID_TARIFFS);
+        createTable(COMPANIES, INDIVIDUALS, CUSTOMER_ADDRESSES, ADDRESSES, ACCOUNTS,
+                POST_PAID_TARIFFS, PRE_PAID_TARIFFS, POST_PAID_CONTRACTS, PRE_PAID_CONTRACTS);
+    }
+
+    public static void dropTables(){
+        dropTable(COMPANIES, INDIVIDUALS,CUSTOMER_ADDRESSES, ADDRESSES, ACCOUNTS,
+                POST_PAID_TARIFFS, PRE_PAID_TARIFFS, POST_PAID_CONTRACTS, PRE_PAID_CONTRACTS);
+    }
+
+    public static void resetAutoIncrement(String tableName){
+        String SQL = "ALTER TABLE " + tableName + " AUTO_INCREMENT = 0;";
+        execute(SQL);
     }
 }

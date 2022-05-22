@@ -2,7 +2,7 @@
   <configuration default="false" name="WithDatabasesCreation" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="com.company.Main" />
     <module name="WisniowaMobileApp" />
-    <option name="PROGRAM_PARAMETERS" value="true" />
+    <option name="PROGRAM_PARAMETERS" value="CREATE" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

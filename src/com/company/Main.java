@@ -1,14 +1,15 @@
 package com.company;
 
-import com.company.classes.model.TableIdentifiers;
-import com.company.jdbc.Constants;
+import com.company.classes.account.customer.Company;
+import com.company.classes.model.BillingCycle;
 import com.company.jdbc.DatabaseConnector;
-
-import java.sql.SQLException;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        if(args.length >= 1 && Boolean.parseBoolean(args[0]))
+        if(args.length >= 1)
+            switch(args[0]){
+                case "CREATE" -> DatabaseConnector.initiateTables();
+                case "DELETE" -> DatabaseConnector.dropTables();
+            }
     }
 }

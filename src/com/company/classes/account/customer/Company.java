@@ -2,7 +2,6 @@ package com.company.classes.account.customer;
 
 import com.company.classes.account.Account;
 import com.company.classes.account.address.Address;
-import com.company.classes.contracts.Contract;
 import com.company.classes.model.BillingCycle;
 import com.company.classes.model.EntityClass;
 import com.company.classes.model.addressModel.AddressTypeGroup;
@@ -11,18 +10,21 @@ import com.company.jdbc.DatabaseConnector;
 import java.util.List;
 
 public class Company extends Customer implements EntityClass {
+    private String name;
     private String nip;
     private String regon;
     private List<Account> representatives;
 
-    public Company(String email, BillingCycle billingCycle, String nip, String regon) {
+    public Company(String email, BillingCycle billingCycle, String name, String nip, String regon) {
         super(email, billingCycle);
+        this.name = name;
         this.nip = nip;
         this.regon = regon;
     }
 
-    public Company(String email, BillingCycle billingCycle, AddressTypeGroup addressType, Address address, String nip, String regon) {
+    public Company(String email, BillingCycle billingCycle, String name, AddressTypeGroup addressType, Address address, String nip, String regon) {
         super(email, billingCycle, addressType, address);
+        this.name = name;
         this.nip = nip;
         this.regon = regon;
     }
@@ -37,5 +39,13 @@ public class Company extends Customer implements EntityClass {
 
     public List<Account> getRepresentatives() {
         return representatives;
+    }
+
+    public void saveToDatabase() {
+        String billingCycleString = getBillingCycle().toString().substring(4);
+        String SQL = "INSERT INTO companies(email, billing_cycle, name, nip, regon) VALUES (\"" + getEmail() + "\", " +
+                Integer.parseInt(billingCycleString) + ", \"" + name + "\", \"" + nip + "\", \"" + regon + "\");";
+        DatabaseConnector.execute(SQL);
+        System.out.println(SQL);
     }
 }

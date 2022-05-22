@@ -1,8 +1,8 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="WithoutDatabasesCreation" type="Application" factoryName="Application">
+  <configuration default="false" name="WithoutDatabaseOperations" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="com.company.Main" />
     <module name="WisniowaMobileApp" />
-    <option name="PROGRAM_PARAMETERS" value="false" />
+    <option name="PROGRAM_PARAMETERS" value="NULL" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

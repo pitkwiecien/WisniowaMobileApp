@@ -2,6 +2,7 @@ package com.company.classes.account.address;
 
 import com.company.classes.model.EntityClass;
 import com.company.classes.model.addressModel.AddressTypeGroup;
+import com.company.jdbc.DatabaseConnector;
 
 import java.util.ArrayList;
 import java.util.List;
