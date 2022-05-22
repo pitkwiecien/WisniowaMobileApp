@@ -38,8 +38,8 @@ public class Individual extends Customer implements EntityClass {
     }
 
     public void saveToDatabase() {
-        String SQL = "INSERT INTO individuals(email, billing_cycle, first_name, last_n.ame, pesel) VALUES (\"" + getEmail() + "\", " +
-                getBillingCycle().toInt() + ", \"" + firstName + "\", \"" + lastName + "\", \"" + pesel + "\");";
+        String SQL = String.format("INSERT INTO companies(email, billing_cycle, first_name, last_name, pesel) VALUES (\"%s\", %s, " +
+                "\"%s\", \"%s\", \"%s\");", getEmail(), getBillingCycle().toInt(), firstName, lastName, pesel);
         DatabaseConnector.execute(SQL);
     }
 }

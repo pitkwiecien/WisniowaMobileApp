@@ -42,8 +42,8 @@ public class Company extends Customer implements EntityClass {
     }
 
     public void saveToDatabase() {
-        String SQL = "INSERT INTO companies(email, billing_cycle, name, nip, regon) VALUES (\"" + getEmail() + "\", " +
-                getBillingCycle().toInt() + ", \"" + name + "\", \"" + nip + "\", \"" + regon + "\");";
+        String SQL = String.format("INSERT INTO companies(email, billing_cycle, name, nip, regon) VALUES (\"%s\", %s, " +
+                "\"%s\", \"%s\", \"%s\");", getEmail(), getBillingCycle().toInt(), name, nip, regon);
         DatabaseConnector.execute(SQL);
     }
 }

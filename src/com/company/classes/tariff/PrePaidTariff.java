@@ -37,4 +37,11 @@ public class PrePaidTariff implements Tariff, EntityClass {
     public Integer getDurationInMonths() {
         return durationInMonths;
     }
+
+    public void saveToDatabase() {
+        String SQL = String.format("INSERT INTO pre_paid_tariffs(price, text_price, minute_price, cellular_price, " +
+                "duration_in_months) VALUES (%s, %s, %s, %s, %s);", price, textPrice, minutePrice, cellularPrice,
+                durationInMonths);
+        DatabaseConnector.execute(SQL);
+    }
 }

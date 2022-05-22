@@ -73,4 +73,12 @@ public class PostPaidTariff implements Tariff, EntityClass {
     public Integer getDurationInMonths() {
         return durationInMonths;
     }
+
+    public void saveToDatabase() {
+        String SQL = String.format("INSERT INTO post_paid_tariffs(price, amount_of_texts, amount_of_mms, amount_of_minutes, " +
+                "amount_of_cellular, extra_text_price, extra_minute_price, extra_cellular_price, duration_in_months)" +
+                "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);", price, amountOfTexts, amountOfMMS, amountOfMinutes,
+                amountOfCellular, extraTextPrice, extraMinutePrice, extraCellularPrice, durationInMonths);
+        DatabaseConnector.execute(SQL);
+    }
 }

@@ -4,6 +4,8 @@ import com.company.classes.account.customer.Company;
 import com.company.classes.account.customer.Customer;
 import com.company.classes.account.customer.Individual;
 import com.company.classes.model.BillingCycle;
+import com.company.classes.tariff.PostPaidTariff;
+import com.company.classes.tariff.PrePaidTariff;
 import com.company.jdbc.DatabaseConnector;
 
 public class Main {
@@ -13,7 +15,7 @@ public class Main {
                 case "CREATE" -> DatabaseConnector.initiateTables();
                 case "DELETE" -> DatabaseConnector.dropTables();
             }
-        Individual c = new Individual("email", BillingCycle.DAY_1, "name", "nip", "regon");
-        c.saveToDatabase();
+        //Individual c = new Individual("a", BillingCycle.DAY_4, "c", "d", "e");
+        //c.saveToDatabase();
     }
 }
