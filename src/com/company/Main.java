@@ -3,6 +3,8 @@ package com.company;
 import com.company.classes.account.customer.Company;
 import com.company.classes.account.customer.Customer;
 import com.company.classes.account.customer.Individual;
+import com.company.classes.contracts.PostPaidContract;
+import com.company.classes.contracts.PrePaidContract;
 import com.company.classes.model.BillingCycle;
 import com.company.classes.tariff.PostPaidTariff;
 import com.company.classes.tariff.PrePaidTariff;
@@ -15,7 +17,5 @@ public class Main {
                 case "CREATE" -> DatabaseConnector.initiateTables();
                 case "DELETE" -> DatabaseConnector.dropTables();
             }
-        //Individual c = new Individual("a", BillingCycle.DAY_4, "c", "d", "e");
-        //c.saveToDatabase();
     }
 }
