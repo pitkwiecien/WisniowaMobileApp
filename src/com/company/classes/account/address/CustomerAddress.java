@@ -1,11 +1,12 @@
 package com.company.classes.account.address;
 
+import com.company.classes.model.EntityClass;
 import com.company.classes.model.addressModel.AddressTypeGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerAddress {
+public class CustomerAddress implements EntityClass {
     private List<Address> addresses;
     private AddressTypeGroup addressType;
 

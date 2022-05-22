@@ -1,6 +1,9 @@
 package com.company.classes.tariff;
 
-public class PrePaidTariff implements Tariff {
+import com.company.classes.model.EntityClass;
+import com.company.jdbc.DatabaseConnector;
+
+public class PrePaidTariff implements Tariff, EntityClass {
     private Double price;
     private Double textPrice;
     private Double minutePrice;

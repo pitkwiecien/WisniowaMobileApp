@@ -1,6 +1,9 @@
 package com.company.classes.account.address;
 
-public class Address {
+import com.company.classes.model.EntityClass;
+import com.company.jdbc.DatabaseConnector;
+
+public class Address implements EntityClass {
     private String streetName;
     private Integer buildingNumber;
     private Integer apartmentNumber;

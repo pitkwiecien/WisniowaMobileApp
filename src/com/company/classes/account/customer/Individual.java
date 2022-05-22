@@ -2,9 +2,11 @@ package com.company.classes.account.customer;
 
 import com.company.classes.account.address.Address;
 import com.company.classes.model.BillingCycle;
+import com.company.classes.model.EntityClass;
 import com.company.classes.model.addressModel.AddressTypeGroup;
+import com.company.jdbc.DatabaseConnector;
 
-public class Individual extends Customer {
+public class Individual extends Customer implements EntityClass {
     private String firstName;
     private String lastName;
     private String pesel;

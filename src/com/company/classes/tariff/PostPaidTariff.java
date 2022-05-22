@@ -1,6 +1,9 @@
 package com.company.classes.tariff;
 
-public class PostPaidTariff implements Tariff {
+import com.company.classes.model.EntityClass;
+import com.company.jdbc.DatabaseConnector;
+
+public class PostPaidTariff implements Tariff, EntityClass {
     private Double price;
     private Integer amountOfTexts;
     private Integer amountOfMMS;

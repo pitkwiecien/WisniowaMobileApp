@@ -1,14 +1,14 @@
 package com.company;
 
-import com.company.classes.account.customer.Company;
-import com.company.classes.account.customer.Customer;
-import com.company.classes.account.customer.Individual;
-import com.company.classes.model.BillingCycle;
+import com.company.classes.model.TableIdentifiers;
+import com.company.jdbc.Constants;
+import com.company.jdbc.DatabaseConnector;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+        if(args.length >= 1 && Boolean.parseBoolean(args[0]))
     }
 }

@@ -2,8 +2,10 @@ package com.company.classes.account;
 
 import com.company.classes.account.customer.Company;
 import com.company.classes.account.customer.Individual;
+import com.company.classes.model.EntityClass;
+import com.company.jdbc.DatabaseConnector;
 
-public class Account {
+public class Account implements EntityClass {
     private String username;
     private String password;
     private Company representedCompany;
