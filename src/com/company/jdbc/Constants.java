@@ -62,11 +62,7 @@ public class Constants {
                 billing_cycle integer not null,
                 first_name text not null,
                 last_name text not null,
-                pesel text not null,
-                company_id integer not null
-                    constraint individuals__companies_fk
-                        references companies
-                            on update cascade on delete cascade
+                pesel text not null
             );""";
 
     public static String CREATEDB_ACCOUNTS = """
