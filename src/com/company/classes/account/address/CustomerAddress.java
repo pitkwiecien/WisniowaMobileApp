@@ -29,4 +29,16 @@ public class CustomerAddress implements EntityClass {
     public AddressTypeGroup getAddressType() {
         return addressType;
     }
+
+    public void saveToDatabase(Integer customerId, Boolean isCompany) {
+        Integer companyId = null;
+        Integer individualId = null;
+        if(isCompany) companyId = customerId;
+        else individualId = customerId;
+        String SQL = String.format("\"INSERT INTO customer_addresses(address_group_type, company_id, individual_id)" +
+                " VALUES (\"%s\", %s, %s);", addressType, companyId, individualId);
+        DatabaseConnector.execute(SQL);
+    }
+
+
 }

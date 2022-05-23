@@ -37,4 +37,11 @@ public class Address implements EntityClass {
     public String getPostalCode() {
         return postalCode;
     }
+
+    public void saveToDatabase(Integer customerAddressId) {
+        String SQL = String.format("INSERT INTO addresses(street_name, building_number, apartment_number, " +
+                "town, postal_code, customer_address_id)) VALUES (\"%s\", %s, %s, \"%s\", \"%s\", %s);",
+                streetName, buildingNumber, apartmentNumber, town, postalCode, customerAddressId);
+        DatabaseConnector.execute(SQL);
+    }
 }

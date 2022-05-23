@@ -4,6 +4,7 @@ import com.company.classes.model.TableIdentifiers;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -132,5 +133,16 @@ public class DatabaseConnector {
     public static void resetAutoIncrement(String tableName){
         String SQL = "ALTER TABLE " + tableName + " AUTO_INCREMENT = 0;";
         execute(SQL);
+    }
+
+    public static Integer getLowestPossibleIdValue(String tableName){
+        String SQL = "SELECT COUNT(*) FROM " + tableName + ";";
+        DatabaseConnector dbc = new DatabaseConnector();
+        dbc.executeQuery(SQL);
+        String stringedArray = Arrays.toString(dbc.interpretResultSet());
+        String cutString = stringedArray.substring(1, stringedArray.length() - 1);
+        Integer ret = Integer.parseInt(cutString) + 1;
+        dbc.closeConnection();
+        return ret;
     }
 }

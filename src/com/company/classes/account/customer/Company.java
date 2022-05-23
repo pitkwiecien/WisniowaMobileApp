@@ -10,6 +10,7 @@ import com.company.jdbc.DatabaseConnector;
 import java.util.List;
 
 public class Company extends Customer implements EntityClass {
+    private Integer id;
     private String name;
     private String nip;
     private String regon;
@@ -17,6 +18,7 @@ public class Company extends Customer implements EntityClass {
 
     public Company(String email, BillingCycle billingCycle, String name, String nip, String regon) {
         super(email, billingCycle);
+        this.id = DatabaseConnector.getLowestPossibleIdValue("companies");
         this.name = name;
         this.nip = nip;
         this.regon = regon;
@@ -24,6 +26,7 @@ public class Company extends Customer implements EntityClass {
 
     public Company(String email, BillingCycle billingCycle, String name, AddressTypeGroup addressType, Address address, String nip, String regon) {
         super(email, billingCycle, addressType, address);
+        this.id = DatabaseConnector.getLowestPossibleIdValue("companies");
         this.name = name;
         this.nip = nip;
         this.regon = regon;
@@ -39,6 +42,11 @@ public class Company extends Customer implements EntityClass {
 
     public List<Account> getRepresentatives() {
         return representatives;
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 
     public void saveToDatabase() {
