@@ -7,6 +7,7 @@ import com.company.classes.model.addressModel.AddressTypeGroup;
 import com.company.jdbc.DatabaseConnector;
 
 public class Individual extends Customer implements EntityClass {
+    public static Integer unsavedObjectNumber = 0;
     private Integer id;
     private String firstName;
     private String lastName;
@@ -14,18 +15,20 @@ public class Individual extends Customer implements EntityClass {
 
     public Individual(String email, BillingCycle billingCycle, String firstName, String lastName, String pesel) {
         super(email, billingCycle);
-        this.id = DatabaseConnector.getLowestPossibleIdValue("individuals");
+        this.id = DatabaseConnector.getLowestPossibleIdValue("individuals") + unsavedObjectNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         this.pesel = pesel;
+        unsavedObjectNumber++;
     }
 
     public Individual(String email, BillingCycle billingCycle, AddressTypeGroup addressType, Address address, String firstName, String lastName, String pesel) {
         super(email, billingCycle, addressType, address);
-        this.id = DatabaseConnector.getLowestPossibleIdValue("individuals");
+        this.id = DatabaseConnector.getLowestPossibleIdValue("individuals") + unsavedObjectNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         this.pesel = pesel;
+        unsavedObjectNumber++;
     }
 
     public String getFirstName() {
@@ -46,8 +49,10 @@ public class Individual extends Customer implements EntityClass {
     }
 
     public void saveToDatabase() {
-        String SQL = String.format("INSERT INTO individuals(email, billing_cycle, first_name, last_name, pesel) VALUES (\"%s\"," +
-                " %s, \"%s\", \"%s\", \"%s\");", getEmail(), getBillingCycle().toInt(), firstName, lastName, pesel);
+        String SQL = String.format("INSERT INTO individuals(id, email, billing_cycle, first_name, last_name, pesel) VALUES" +
+                "(%s, \"%s\", %s, \"%s\", \"%s\", \"%s\");", id, getEmail(), getBillingCycle().toInt(),
+                firstName, lastName, pesel);
         DatabaseConnector.execute(SQL);
+        unsavedObjectNumber--;
     }
 }

@@ -42,8 +42,15 @@ public class Account implements EntityClass {
         Integer individualId = null;
         if(isCompany) companyId = customerId;
         else individualId = customerId;
-        String SQL = String.format("INSERT INTO INSERT INTO accounts(username, password, represented_company_id, individual_id)" +
+        String SQL = String.format("INSERT INTO accounts(username, password, represented_company_id, individual_id)" +
                 " VALUES (\"%s\", \"%s\", %s, %s);", username, password, companyId, individualId);
         DatabaseConnector.execute(SQL);
+    }
+
+    @Override
+    public String toString(){
+        return "username: " + this.getUsername() + ", password: " + this.getPassword() +
+                (representedCompany != null ? ", company NIP:" + representedCompany.getNip() :
+                        ", pesel: " + individual.getPesel());
     }
 }

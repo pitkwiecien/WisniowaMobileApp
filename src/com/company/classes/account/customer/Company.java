@@ -10,6 +10,7 @@ import com.company.jdbc.DatabaseConnector;
 import java.util.List;
 
 public class Company extends Customer implements EntityClass {
+    public static Integer unsavedObjectNumber = 0;
     private Integer id;
     private String name;
     private String nip;
@@ -18,18 +19,20 @@ public class Company extends Customer implements EntityClass {
 
     public Company(String email, BillingCycle billingCycle, String name, String nip, String regon) {
         super(email, billingCycle);
-        this.id = DatabaseConnector.getLowestPossibleIdValue("companies");
+        this.id = DatabaseConnector.getLowestPossibleIdValue("companies") + unsavedObjectNumber;
         this.name = name;
         this.nip = nip;
         this.regon = regon;
+        unsavedObjectNumber++;
     }
 
     public Company(String email, BillingCycle billingCycle, String name, AddressTypeGroup addressType, Address address, String nip, String regon) {
         super(email, billingCycle, addressType, address);
-        this.id = DatabaseConnector.getLowestPossibleIdValue("companies");
+        this.id = DatabaseConnector.getLowestPossibleIdValue("companies") + unsavedObjectNumber;
         this.name = name;
         this.nip = nip;
         this.regon = regon;
+        unsavedObjectNumber++;
     }
 
     public String getNip() {
@@ -50,8 +53,9 @@ public class Company extends Customer implements EntityClass {
     }
 
     public void saveToDatabase() {
-        String SQL = String.format("INSERT INTO companies(email, billing_cycle, name, nip, regon) VALUES (\"%s\", %s, " +
-                "\"%s\", \"%s\", \"%s\");", getEmail(), getBillingCycle().toInt(), name, nip, regon);
+        String SQL = String.format("INSERT INTO companies(id, email, billing_cycle, name, nip, regon) VALUES (%s,\"%s\"," +
+                "%s, \"%s\", \"%s\", \"%s\");", id, getEmail(), getBillingCycle().toInt(), name, nip, regon);
         DatabaseConnector.execute(SQL);
+        unsavedObjectNumber--;
     }
 }

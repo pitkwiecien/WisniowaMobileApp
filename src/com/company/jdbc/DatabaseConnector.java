@@ -70,20 +70,37 @@ public class DatabaseConnector {
         return eq;
     }
 
-    public Object[] interpretResultSet(){
+    public Object[][] interpretResultSet(){
         if(resultSet == null) return null;
-        List<Object> objectList = new ArrayList<>();
-        int i = 1;
+        int columnAmount;
+        try {
+            columnAmount = resultSet.getMetaData().getColumnCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        ArrayList<Object[]> objectArrayList = new ArrayList<>();
         while (true){
+            Object[] currentIteration = new Object[columnAmount];
+            int i = 1;
             try {
                 if (!resultSet.next()) break;
-                objectList.add(resultSet.getObject(i));
+                while (i <= columnAmount) {
+                    currentIteration[i - 1] = resultSet.getObject(i);
+                    i++;
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            objectArrayList.add(currentIteration);
+        }
+        Object[][] objectDblArray = new Object[objectArrayList.size()][];
+        int i = 0;
+        for(Object[] objects : objectArrayList){
+            objectDblArray[i] = objects;
             i++;
         }
-        return objectList.toArray();
+        return objectDblArray;
     }
 
     public static boolean execute(String SQL) {
@@ -139,10 +156,11 @@ public class DatabaseConnector {
         String SQL = "SELECT COUNT(*) FROM " + tableName + ";";
         DatabaseConnector dbc = new DatabaseConnector();
         dbc.executeQuery(SQL);
-        String stringedArray = Arrays.toString(dbc.interpretResultSet());
+        String stringedArray = Arrays.toString(dbc.interpretResultSet()[0]);
         String cutString = stringedArray.substring(1, stringedArray.length() - 1);
-        Integer ret = Integer.parseInt(cutString) + 1;
+        if(cutString.equals("ul")) return 0;
+        int ret = Integer.parseInt(cutString);
         dbc.closeConnection();
-        return ret;
+        return (ret + 1);
     }
 }

@@ -44,7 +44,7 @@ public class Constants {
             (
                 id integer not null
                     constraint companies_pk
-                        primary key autoincrement,
+                        primary key,
                 email text not null,
                 billing_cycle integer not null,
                 name text not null,
@@ -57,7 +57,7 @@ public class Constants {
             (
                 id integer not null
                     constraint individuals_pk
-                        primary key autoincrement,
+                        primary key,
                 email text not null,
                 billing_cycle integer not null,
                 first_name text not null,
