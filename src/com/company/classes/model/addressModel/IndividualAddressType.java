@@ -1,5 +1,5 @@
 package com.company.classes.model.addressModel;
 
-public enum PersonAddressType implements AddressTypeGroup{
+public enum IndividualAddressType implements AddressTypeGroup{
     BASE, REGISTERED
 }

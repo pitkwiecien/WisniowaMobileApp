@@ -1,27 +1,23 @@
 package com.company.classes.contracts;
 
+import com.company.classes.account.customer.Customer;
+
 public abstract class Contract {
     private String phone;
-    private Integer companyId;
-    private Integer individualId;
+    private Customer customer;
 
-    public Contract(String phone, Integer creatorId, Boolean creatorIsCompany) {
-        this.companyId = null;
-        this.individualId = null;
-        if(creatorIsCompany) this.companyId = creatorId;
-        else this.individualId = creatorId;
+    public Contract(String phone, Customer customer) {
         this.phone = phone;
+        this.customer = customer;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public Integer getCompanyId() {
-        return companyId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public Integer getIndividualId() {
-        return individualId;
-    }
+    public abstract void saveToDatabase();
 }

@@ -2,6 +2,7 @@ package com.company.classes.account.customer;
 
 import com.company.classes.account.Account;
 import com.company.classes.account.address.Address;
+import com.company.classes.account.address.CustomerAddress;
 import com.company.classes.model.BillingCycle;
 import com.company.classes.model.EntityClass;
 import com.company.classes.model.addressModel.AddressTypeGroup;
@@ -26,8 +27,9 @@ public class Company extends Customer implements EntityClass {
         unsavedObjectNumber++;
     }
 
-    public Company(String email, BillingCycle billingCycle, String name, AddressTypeGroup addressType, Address address, String nip, String regon) {
-        super(email, billingCycle, addressType, address);
+    public Company(String email, BillingCycle billingCycle, CustomerAddress[] customerAddresses, String name, String nip,
+                   String regon) {
+        super(email, billingCycle, customerAddresses);
         this.id = DatabaseConnector.getLowestPossibleIdValue("companies") + unsavedObjectNumber;
         this.name = name;
         this.nip = nip;

@@ -1,6 +1,7 @@
 package com.company.classes.account.customer;
 
 import com.company.classes.account.address.Address;
+import com.company.classes.account.address.CustomerAddress;
 import com.company.classes.model.BillingCycle;
 import com.company.classes.model.EntityClass;
 import com.company.classes.model.addressModel.AddressTypeGroup;
@@ -22,8 +23,9 @@ public class Individual extends Customer implements EntityClass {
         unsavedObjectNumber++;
     }
 
-    public Individual(String email, BillingCycle billingCycle, AddressTypeGroup addressType, Address address, String firstName, String lastName, String pesel) {
-        super(email, billingCycle, addressType, address);
+    public Individual(String email, BillingCycle billingCycle, CustomerAddress[] customerAddresses, String firstName,
+                      String lastName, String pesel) {
+        super(email, billingCycle, customerAddresses);
         this.id = DatabaseConnector.getLowestPossibleIdValue("individuals") + unsavedObjectNumber;
         this.firstName = firstName;
         this.lastName = lastName;

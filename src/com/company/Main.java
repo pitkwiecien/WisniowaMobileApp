@@ -2,7 +2,6 @@ package com.company;
 
 import com.company.jdbc.DatabaseConnector;
 import com.company.jdbc.operations.DatabaseFiller;
-import com.company.service.CompanyService;
 
 public class Main {
     public static void main(String[] args) {

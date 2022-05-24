@@ -8,6 +8,7 @@ import com.company.classes.model.addressModel.AddressTypeGroup;
 import com.company.jdbc.DatabaseConnector;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class Customer {
@@ -21,11 +22,11 @@ public abstract class Customer {
         this.billingCycle = billingCycle;
     }
 
-    public Customer(String email, BillingCycle billingCycle, AddressTypeGroup addressType, Address address) {
+    public Customer(String email, BillingCycle billingCycle, CustomerAddress[] customerAddresses) {
         this.email = email;
         this.billingCycle = billingCycle;
         this.addresses = new ArrayList<>();
-        this.addresses.add(new CustomerAddress(addressType, address));
+        Collections.addAll(this.addresses, customerAddresses);
     }
 
     public String getEmail() {

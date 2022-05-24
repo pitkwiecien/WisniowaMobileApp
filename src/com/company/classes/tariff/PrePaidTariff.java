@@ -44,4 +44,15 @@ public class PrePaidTariff implements Tariff, EntityClass {
                 durationInMonths);
         DatabaseConnector.execute(SQL);
     }
+
+    @Override
+    public String toString() {
+        return "PrePaidTariff{" +
+                "price=" + price +
+                ", textPrice=" + textPrice +
+                ", minutePrice=" + minutePrice +
+                ", cellularPrice=" + cellularPrice +
+                ", durationInMonths=" + durationInMonths +
+                '}';
+    }
 }

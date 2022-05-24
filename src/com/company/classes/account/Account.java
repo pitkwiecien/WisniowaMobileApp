@@ -37,6 +37,10 @@ public class Account implements EntityClass {
         return representedCompany;
     }
 
+    public Individual getIndividual() {
+        return individual;
+    }
+
     public void saveToDatabase(Integer customerId, Boolean isCompany) {
         Integer companyId = null;
         Integer individualId = null;

@@ -81,4 +81,19 @@ public class PostPaidTariff implements Tariff, EntityClass {
                 amountOfCellular, extraTextPrice, extraMinutePrice, extraCellularPrice, durationInMonths);
         DatabaseConnector.execute(SQL);
     }
+
+    @Override
+    public String toString() {
+        return "PostPaidTariff{" +
+                "price=" + price +
+                ", amountOfTexts=" + amountOfTexts +
+                ", amountOfMMS=" + amountOfMMS +
+                ", amountOfMinutes=" + amountOfMinutes +
+                ", amountOfCellular=" + amountOfCellular +
+                ", extraTextPrice=" + extraTextPrice +
+                ", extraMinutePrice=" + extraMinutePrice +
+                ", extraCellularPrice=" + extraCellularPrice +
+                ", durationInMonths=" + durationInMonths +
+                '}';
+    }
 }
