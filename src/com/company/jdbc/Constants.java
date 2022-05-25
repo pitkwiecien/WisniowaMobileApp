@@ -1,7 +1,8 @@
 package com.company.jdbc;
 
 public class Constants {
-    public static String DATABASE_URL = "jdbc:sqlite:S:\\Java\\Maxim\\WisniowaMobileApp\\dataSources\\WisniowaMobile.db";
+    public static String DATABASE_URL = "jdbc:sqlite:C:\\Users\\uczen\\IdeaProjects" +
+            "\\WisniowaMobileApp\\dataSources\\WisniowaMobile.db";
     public static String SHOW_TABLES = "SELECT name FROM sqlite_schema " +
             "WHERE type ='table' AND name NOT LIKE 'sqlite_%';";
 
