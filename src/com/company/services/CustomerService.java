@@ -33,12 +33,11 @@ public class CustomerService {
         DatabaseConnector dbc = new DatabaseConnector();
         dbc.executeQuery(SQL);
         Object[] futureCompany = dbc.interpretResultSet()[0];
-        String billingCycleString = "DAY_" + futureCompany[2];
         if(isCompany)
-            return new Company((String) futureCompany[1], BillingCycle.valueOf(billingCycleString), AddressService.getCustomerAddressesByCustomerId(id, true),
+            return new Company((String) futureCompany[1], BillingCycle.toBillingCycle(futureCompany[2]), AddressService.getCustomerAddressesByCustomerId(id, true),
                     (String) futureCompany[3], (String) futureCompany[4], (String) futureCompany[5]);
         else
-            return new Individual((String) futureCompany[1], BillingCycle.valueOf(billingCycleString), AddressService.getCustomerAddressesByCustomerId(id, false),
+            return new Individual((String) futureCompany[1], BillingCycle.toBillingCycle(futureCompany[2]), AddressService.getCustomerAddressesByCustomerId(id, false),
                     (String) futureCompany[3], (String) futureCompany[4], (String) futureCompany[5]);
     }
 

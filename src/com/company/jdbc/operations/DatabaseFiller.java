@@ -25,7 +25,7 @@ public class DatabaseFiller {
                 "01-324");
         CustomerAddress microsoftBillingAddresses = new CustomerAddress(CompanyAddressType.BILLING,
                 new Address[]{microsoftBillingAddress});
-        Company microsoft = new Company("microsoft@gmail.com", BillingCycle.DAY_4,
+        Company microsoft = new Company("microsoft@gmail.com", BillingCycle.DAY_LAST,
                 new CustomerAddress[]{microsoftBillingAddresses}, "Microsoft", "123-456-32-18", "123456785");
         Account microsofter1 = new Account("Microsofter1", "idk_bro", microsoft);
         AccountService.addAccount(microsofter1, true);

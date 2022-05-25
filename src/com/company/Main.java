@@ -3,6 +3,7 @@ package com.company;
 import com.company.classes.model.BillingCycle;
 import com.company.jdbc.DatabaseConnector;
 import com.company.jdbc.operations.DatabaseFiller;
+import com.company.services.CustomerService;
 
 public class Main {
     public static void main(String[] args) {

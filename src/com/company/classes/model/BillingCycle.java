@@ -8,4 +8,10 @@ public enum BillingCycle {
             return Integer.parseInt(this.name().substring(4));
         return -1;
     }
+
+    public static BillingCycle toBillingCycle(Object object) {
+        int integer = Integer.parseInt(object.toString());
+        String string = integer == -1 ? "DAY_LAST" : ("DAY_" + integer);
+        return BillingCycle.valueOf(string);
+    }
 }
